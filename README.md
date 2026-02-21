@@ -1,24 +1,12 @@
-# Camera Frame Analyzer
+# WPF Camera Frame Analyzer
 
-A modern WPF application demonstrating proper frame capture, processing, and real-time visualization from a webcam. This project was created as an educational example to address common pitfalls in multi-threaded frame processing and native interop scenarios.
+A modern WPF application demonstrating proper frame capture, processing, and real-time visualization from a webcam. 
+[![Watch the video](https://img.youtube.com/vi/Trd2qrAyW7Q/hqdefault.jpg)](https://www.youtube.com/watch?v=Trd2qrAyW7Q)
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=.net)
 ![WPF](https://img.shields.io/badge/WPF-Windows-0078D4?logo=windows)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.9-5C3EE8?logo=opencv)
 ![LiveCharts](https://img.shields.io/badge/LiveCharts-2.0-FF6384)
-
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [The Problem](#the-problem)
-- [The Solution](#the-solution)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Architecture](#architecture)
-- [Technical Deep Dive](#technical-deep-dive)
-- [Screenshots](#screenshots)
-- [License](#license)
 
 ---
 
@@ -31,7 +19,7 @@ This project demonstrates the correct implementation of a real-time camera frame
 3. **Streams results** to a real-time chart visualization
 4. **Displays live camera feed** in a modern WPF interface
 
-The application was built to showcase best practices in:
+The application was built with best practices in:
 - Thread-safe frame processing
 - Native interop memory management
 - Concurrent data structures
@@ -42,9 +30,9 @@ The application was built to showcase best practices in:
 
 ## 🐛 The Problem
 
-### Original Intern's Code Issues
+### Original  Code Issues
 
-An intern was tasked with implementing the frame capture and processing system. Their implementation contained several **critical bugs**:
+It was implemented the frame capture and processing system. Their implementation contained several **critical bugs**:
 
 #### 1. **Data Corruption - Shared Buffer**
 ```csharp
@@ -216,7 +204,7 @@ C:\Users\SESA845051\OneDrive - Schneider Electric\Coding\Formulatrix\C\
 
 1. **Clone or navigate to the project directory:**
    ```powershell
-   cd "c:\Users\SESA845051\OneDrive - Schneider Electric\Coding\Formulatrix\C"
+   cd "c:\Users\path\Coding\Formulatrix\C"
    ```
 
 2. **Restore NuGet packages:**
@@ -233,15 +221,6 @@ C:\Users\SESA845051\OneDrive - Schneider Electric\Coding\Formulatrix\C\
    ```powershell
    dotnet run --project CameraMonitor.csproj
    ```
-
-### Usage
-
-1. **Launch** the application
-2. Click **"▶ Start Camera"** button
-3. Allow camera access if prompted by Windows
-4. Watch the **live feed** and **real-time chart** update
-5. Monitor **statistics** (frames processed, average value, FPS)
-6. Click **"⏹ Stop Camera"** to stop
 
 ---
 
@@ -446,42 +425,3 @@ private void HandleFrameUpdated(byte[] frameData)
 | LiveChartsCore.SkiaSharpView.WPF | 2.0.0-rc2 | Modern charting library with animations |
 
 ---
-
-## 🤝 Contributing
-
-This is an educational project demonstrating best practices. Key areas for enhancement:
-
-- [ ] Add GPU acceleration for frame processing
-- [ ] Implement frame recording to video files
-- [ ] Add more image analysis algorithms (edge detection, histogram, etc.)
-- [ ] Support multiple camera selection
-- [ ] Add unit tests for frame processing logic
-- [ ] Implement ArrayPool for better memory efficiency
-
----
-
-## 📝 License
-
-This project is provided as-is for educational purposes.
-
----
-
-## 👤 Author
-
-Created as a training example for **Formulatrix** to demonstrate proper multi-threaded frame processing and native interop patterns.
-
-**Date**: February 22, 2026
-
----
-
-## 🔗 Additional Resources
-
-- [OpenCvSharp Documentation](https://github.com/shimat/opencvsharp)
-- [LiveCharts Documentation](https://livecharts.dev/)
-- [WPF Best Practices](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/)
-- [Threading in C#](https://learn.microsoft.com/en-us/dotnet/standard/threading/)
-- [Memory Management in .NET](https://learn.microsoft.com/en-us/dotnet/standard/memory-and-spans/)
-
----
-
-**⭐ If this helped you understand frame processing patterns, consider starring this project!**
