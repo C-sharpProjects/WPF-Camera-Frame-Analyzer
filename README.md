@@ -1,7 +1,7 @@
 # WPF Camera Frame Analyzer
 
 A modern WPF application demonstrating proper frame capture, processing, and real-time visualization from a webcam. 
-[![Watch the video](https://img.youtube.com/vi/Trd2qrAyW7Q/maxdefault.jpg)](https://www.youtube.com/watch?v=Trd2qrAyW7Q)
+[![Watch the video](https://img.youtube.com/vi/Trd2qrAyW7Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=Trd2qrAyW7Q)
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=.net)
 ![WPF](https://img.shields.io/badge/WPF-Windows-0078D4?logo=windows)
