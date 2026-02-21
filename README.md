@@ -13,7 +13,7 @@ A modern WPF application demonstrating proper frame capture, processing, and rea
 
 ## 🎯 Overview
 
-This project demonstrates the correct implementation of a real-time camera frame processing pipeline that:
+This project to correct implementation of a real-time camera frame processing pipeline that:
 
 1. **Captures frames** from a webcam at 30 FPS
 2. **Calculates average pixel values** for each frame
