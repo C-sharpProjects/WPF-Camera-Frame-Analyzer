@@ -1,0 +1,187 @@
+<Window x:Class="Formulatrix.Intern.GrabTheFrame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        Title="Camera Frame Analyzer" 
+        Height="800" 
+        Width="1400"
+        Background="{StaticResource BackgroundBrush}"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Style="{StaticResource Card}" Margin="0,0,0,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Camera Frame Analyzer" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Real-time pixel average analysis from webcam" 
+                               FontSize="14" 
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" 
+                           Orientation="Horizontal" 
+                           VerticalAlignment="Center">
+                    <Button x:Name="StartButton"
+                            Content="▶ Start Camera" 
+                            Style="{StaticResource ModernButton}"
+                            Click="StartButton_Click"
+                            Margin="0,0,10,0"/>
+                    <Button x:Name="StopButton"
+                            Content="⏹ Stop Camera" 
+                            Style="{StaticResource ModernButton}"
+                            Background="{StaticResource AccentBrush}"
+                            Click="StopButton_Click"
+                            IsEnabled="False"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel - Camera Feed & Stats -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Camera Feed -->
+                <Border Grid.Row="0" Style="{StaticResource Card}">
+                    <Grid>
+                        <Image x:Name="CameraImage" 
+                               Stretch="Uniform"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        
+                        <!-- Overlay for no camera -->
+                        <Border x:Name="NoCameraOverlay"
+                                Background="#F0F0F0"
+                                CornerRadius="4"
+                                Visibility="Visible">
+                            <StackPanel HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center">
+                                <TextBlock Text="📷" 
+                                          FontSize="64" 
+                                          HorizontalAlignment="Center"
+                                          Margin="0,0,0,10"/>
+                                <TextBlock Text="Camera Not Active" 
+                                          FontSize="18" 
+                                          FontWeight="SemiBold"
+                                          Foreground="{StaticResource TextSecondaryBrush}"
+                                          HorizontalAlignment="Center"/>
+                                <TextBlock Text="Click 'Start Camera' to begin" 
+                                          FontSize="14" 
+                                          Foreground="{StaticResource TextSecondaryBrush}"
+                                          HorizontalAlignment="Center"
+                                          Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Statistics Panel -->
+                <Border Grid.Row="2" Style="{StaticResource Card}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Frames Processed -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="FRAMES PROCESSED" 
+                                      FontSize="10" 
+                                      Foreground="{StaticResource TextSecondaryBrush}"
+                                      FontWeight="Bold"/>
+                            <TextBlock x:Name="FramesProcessedText" 
+                                      Text="0" 
+                                      FontSize="28" 
+                                      FontWeight="Bold"
+                                      Foreground="{StaticResource PrimaryBrush}"
+                                      Margin="0,4,0,0"/>
+                        </StackPanel>
+
+                        <!-- Current Average -->
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="CURRENT AVERAGE" 
+                                      FontSize="10" 
+                                      Foreground="{StaticResource TextSecondaryBrush}"
+                                      FontWeight="Bold"/>
+                            <TextBlock x:Name="CurrentAverageText" 
+                                      Text="0.00" 
+                                      FontSize="28" 
+                                      FontWeight="Bold"
+                                      Foreground="{StaticResource AccentBrush}"
+                                      Margin="0,4,0,0"/>
+                        </StackPanel>
+
+                        <!-- FPS -->
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="FPS" 
+                                      FontSize="10" 
+                                      Foreground="{StaticResource TextSecondaryBrush}"
+                                      FontWeight="Bold"/>
+                            <TextBlock x:Name="FpsText" 
+                                      Text="0" 
+                                      FontSize="28" 
+                                      FontWeight="Bold"
+                                      Foreground="#4CAF50"
+                                      Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Right Panel - Real-time Chart -->
+            <Border Grid.Column="2" Style="{StaticResource Card}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                        <TextBlock Text="Average Pixel Value Over Time" 
+                                  FontSize="18" 
+                                  FontWeight="SemiBold"
+                                  Foreground="{StaticResource TextPrimaryBrush}"/>
+                        <TextBlock Text="Real-time monitoring of frame brightness" 
+                                  FontSize="12" 
+                                  Foreground="{StaticResource TextSecondaryBrush}"
+                                  Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <lvc:CartesianChart Grid.Row="1" 
+                                       x:Name="Chart"
+                                       Series="{Binding Series}"
+                                       XAxes="{Binding XAxes}"
+                                       YAxes="{Binding YAxes}"
+                                       TooltipPosition="Hidden"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
